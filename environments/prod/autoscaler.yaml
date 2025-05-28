@@ -1,0 +1,16 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: example-autoscaler
+  namespace: actions-runner-system
+spec:
+  scaleTargetRef:
+    name: example-runner-deployment
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: PercentageRunnersBusy
+      scaleUpThreshold: '0.5'
+      scaleDownThreshold: '0.25'
+      scaleUpAdjustment: 1
+      scaleDownAdjustment: 1
